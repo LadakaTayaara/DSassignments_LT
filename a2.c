@@ -158,20 +158,20 @@ void fast_transpose(int a[4][4], int m, int n) {
         }
     }
 
-    int row_terms[n];
+    int s[n];
     for(int i = 0; i < n; i++) {
-        row_terms[i] = 0;
+        s[i] = 0;
     }
 
-    int starting_pos[n];
+    int t[n];
 
     for (int i = 1; i <= value; i++) {
-        row_terms[sp[i][1]]++;
+        s[sp[i][1]]++;
     }
 
-    starting_pos[0] = 1;
+    t[0] = 1;
     for (int i = 1; i < n; i++) {
-        starting_pos[i] = starting_pos[i - 1] + row_terms[i - 1];
+        t[i] = t[i - 1] + s[i - 1];
     }
 
     int fsp[value + 1][3];
@@ -181,14 +181,14 @@ void fast_transpose(int a[4][4], int m, int n) {
     fsp[0][2] = value;
 
     for (int i = 1; i <= value; i++) {
-        int original_col = sp[i][1];
-        int current_pos = starting_pos[original_col];
+        int original_col_index = sp[i][1];
+        int target_row_in_fsp = t[original_col_index];
 
-        fsp[current_pos][0] = sp[i][1];
-        fsp[current_pos][1] = sp[i][0];
-        fsp[current_pos][2] = sp[i][2];
+        fsp[target_row_in_fsp][0] = sp[i][1];
+        fsp[target_row_in_fsp][1] = sp[i][0];
+        fsp[target_row_in_fsp][2] = sp[i][2];
 
-        starting_pos[original_col]++;
+        t[original_col_index]++;
     }
 
     printf("\nFast transpose display:\n");
