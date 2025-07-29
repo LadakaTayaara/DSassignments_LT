@@ -215,7 +215,7 @@ int main() {
         printf("5. Exit\n");
         printf("Enter your choice: ");
         if (scanf("%d", &ch) != 1) {
-            printf("Invalid input. Please enter a number.\n");
+            printf("Invalid input.\n");
             while (getchar() != '\n');
             continue;
         }
@@ -228,21 +228,21 @@ int main() {
                 if (is_sparse) {
                     compact_form(a, m, n);
                 } else {
-                    printf("Matrix is not considered sparse, compact form might not be as beneficial.\n");
+                    printf("this Matrix is not sparse\n");
                 }
                 break;
             case 3:
                 if (is_sparse) {
                     simple_transpose(a, m, n);
                 } else {
-                    printf("Transpose operations are typically optimized for sparse matrices. This matrix is not considered sparse.\n");
+                    printf("This matrix is not sparse.\n");
                 }
                 break;
             case 4:
                 if (is_sparse) {
                     fast_transpose(a, m, n);
                 } else {
-                    printf("Transpose operations are typically optimized for sparse matrices. This matrix is not considered sparse.\n");
+                    printf("This matrix is not sparse.\n");
                 }
                 break;
             case 5:
