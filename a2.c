@@ -18,7 +18,7 @@ int accept(int a[4][4], int m, int n) {
         printf("\nMatrix is sparse (Non-zero elements: %d out of %d).\n", value, m * n);
         return 1;
     } else {
-        printf("\nMatrix is not considered sparse for this demonstration (Non-zero elements: %d out of %d).\n", value, m * n);
+        printf("\nMatrix is not sparse(Non-zero elements: %d out of %d).\n", value, m * n);
         return 0;
     }
 }
