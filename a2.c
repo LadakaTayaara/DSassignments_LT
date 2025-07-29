@@ -195,7 +195,7 @@ void fast_transpose(int a[4][4], int m, int n) {
     printf("| Row | Col | Value |\n");
     printf("---------------------\n");
     for (int i = 0; i <= value; i++) {
-        printf("| %3d | %3d | %5d |\n", fsp[i][0], fsp[i][1], fsp[i][2]);
+        printf("| %d | %d | %d |\n", fsp[i][0], fsp[i][1], fsp[i][2]);
     }
 }
 
