@@ -32,9 +32,11 @@ void display(struct stud s[], int n) {
 void bubblesort(stud s[], int n) {
     stud temp;
     int swapcount = 0;
+    int comparisons=0;
     printf("\n--- Performing Bubble Sort ---\n");
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
+            comparisons++;
             if (s[j].rno > s[j + 1].rno) {
                 temp = s[j];
                 s[j] = s[j + 1];
@@ -42,17 +44,21 @@ void bubblesort(stud s[], int n) {
                 swapcount++;
             }
         }
+        printf("Pass: %d\n",i);
     }
-    printf("Bubble Sort completed. Total swaps: %d\n", swapcount);
+    printf("Bubble Sort completed. Total swaps: %d\n Total Comparisons: %d\n", swapcount,comparisons);
 }
 
 void selectionsort(stud s[], int n) {
     int minpos;
     stud temp;
+    int comparisons=0;
+    int swaps=0;
     printf("\n--- Performing Selection Sort ---\n");
     for (int i = 0; i < n - 1; i++) {
         minpos = i;
         for (int j = i + 1; j < n; j++) {
+            comparisons++;
             if (s[j].rno < s[minpos].rno) {
                 minpos = j;
             }
@@ -61,13 +67,18 @@ void selectionsort(stud s[], int n) {
             temp = s[minpos];
             s[minpos] = s[i];
             s[i] = temp;
+            swaps++;
         }
+        printf("Pass:%d\n",i);
     }
     printf("Selection Sort completed.\n");
+    printf("Total swaps: %d\n Total Comparisons: %d\n", swaps,comparisons);
 }
 
 void insertionsort(stud s[], int n) {
     int i, j;
+    int comparisons=0;
+    int swaps=0;
     stud key;
     printf("\n--- Performing Insertion Sort ---\n");
     for (i = 1; i < n; i++) {
@@ -75,12 +86,14 @@ void insertionsort(stud s[], int n) {
         j = i - 1;
 
         while (j >= 0 && s[j].rno > key.rno) {
+            comparisons++;
             s[j + 1] = s[j];
+            swaps++;
             j = j - 1;
         }
         s[j + 1] = key;
     }
-    printf("Insertion Sort completed.\n");
+    printf("Insertion Sort completed.\nTotal swaps:%d\nTotal comparisons:%d\n",swaps,comparisons);
 }
 
 int main() {
