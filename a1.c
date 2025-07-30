@@ -33,8 +33,10 @@ void bubblesort(stud s[], int n) {
     stud temp;
     int swapcount = 0;
     int comparisons=0;
+    int passes=0;
     printf("\n--- Performing Bubble Sort ---\n");
     for (int i = 0; i < n - 1; i++) {
+        passes++;
         for (int j = 0; j < n - i - 1; j++) {
             comparisons++;
             if (s[j].rno > s[j + 1].rno) {
@@ -44,9 +46,9 @@ void bubblesort(stud s[], int n) {
                 swapcount++;
             }
         }
-        printf("Pass: %d\n",i);
+        
     }
-    printf("Bubble Sort completed. Total swaps: %d\n Total Comparisons: %d\n", swapcount,comparisons);
+    printf("Bubble Sort completed. Total swaps: %d\n Total Comparisons: %d\n total passes: %d", swapcount,comparisons,passes);
 }
 
 void selectionsort(stud s[], int n) {
@@ -54,8 +56,10 @@ void selectionsort(stud s[], int n) {
     stud temp;
     int comparisons=0;
     int swaps=0;
+    int passes=0;
     printf("\n--- Performing Selection Sort ---\n");
     for (int i = 0; i < n - 1; i++) {
+        passes++;
         minpos = i;
         for (int j = i + 1; j < n; j++) {
             comparisons++;
@@ -69,22 +73,22 @@ void selectionsort(stud s[], int n) {
             s[i] = temp;
             swaps++;
         }
-        printf("Pass:%d\n",i);
     }
     printf("Selection Sort completed.\n");
-    printf("Total swaps: %d\n Total Comparisons: %d\n", swaps,comparisons);
+    printf("Total swaps: %d\n Total Comparisons: %d\nTotal Passes: %d\n", swaps,comparisons,passes);
 }
 
 void insertionsort(stud s[], int n) {
     int i, j;
     int comparisons=0;
     int swaps=0;
+    int passes=0;
     stud key;
     printf("\n--- Performing Insertion Sort ---\n");
     for (i = 1; i < n; i++) {
         key = s[i];
         j = i - 1;
-
+        passes++;
         while (j >= 0 && s[j].rno > key.rno) {
             comparisons++;
             s[j + 1] = s[j];
@@ -93,7 +97,7 @@ void insertionsort(stud s[], int n) {
         }
         s[j + 1] = key;
     }
-    printf("Insertion Sort completed.\nTotal swaps:%d\nTotal comparisons:%d\n",swaps,comparisons);
+    printf("Insertion Sort completed.\nTotal swaps:%d\nTotal comparisons:%d\nTotal Passes: %d\n",swaps,comparisons,passes);
 }
 
 int main() {
