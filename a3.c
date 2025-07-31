@@ -7,7 +7,7 @@ int crear=0;
 int n=0;
 int m=0;
 
-int isFull(int q[n]){
+int isFull(int q[100]){
     if(rear==n-1){
         return 1;
     }
@@ -16,7 +16,7 @@ int isFull(int q[n]){
     }
 }
 
-int CisFull(int q[m]){
+int CisFull(int q[100]){
     if((crear+1)%m==cfront){
         return 1;
     }
@@ -25,7 +25,7 @@ int CisFull(int q[m]){
     }
 }
 
-int isEmpty(int q[n]){
+int isEmpty(int q[100]){
     if(front==rear){
         return 1;
     }
@@ -34,7 +34,7 @@ int isEmpty(int q[n]){
     }
 }
 
-int CisEmpty(int q[m]){
+int CisEmpty(int q[100]){
     if((cfront%m)==(crear%m)){
         return 1;
     }
@@ -43,7 +43,7 @@ int CisEmpty(int q[m]){
     }
 }
 
-int enqueue(int q[n],int elem){
+int enqueue(int q[100],int elem){
     if(isFull(q)){
         printf("queue is full\n");
         return 0;
@@ -55,7 +55,7 @@ int enqueue(int q[n],int elem){
     }
 }
 
-int Cenqueue(int q[m],int elem){
+int Cenqueue(int q[100],int elem){
     if(CisFull(q)){
         printf("queue is full\n");
         return 0;
@@ -67,7 +67,7 @@ int Cenqueue(int q[m],int elem){
     }
 }
 
-int dequeue(int q[n]){
+int dequeue(int q[100]){
     if(isEmpty(q)){
         printf("queue is empty\n");
         return 0;
@@ -77,11 +77,12 @@ int dequeue(int q[n]){
         front=front+1;
         elem=q[front];
         q[front]=-1;
+        printf("\n%d Dequeued successfully\n",elem);
         return elem;
     }
 }
 
-int Cdequeue(int q[m]){
+int Cdequeue(int q[100]){
     if(CisEmpty(q)){
         printf("queue is empty\n");
         return 0;
@@ -91,11 +92,12 @@ int Cdequeue(int q[m]){
         cfront=cfront+1;
         elem=q[cfront];
         q[cfront]=-1;
+        printf("\n%d Dequeued successfully\n",elem);
         return elem;
     }
 }
 
-void display(int q[n]){
+void display(int q[100]){
     printf("[");
     for(int i=front+1;i<=rear;i++){
         printf("%d ",q[i]);
@@ -103,7 +105,7 @@ void display(int q[n]){
     printf("]\n");
 }
 
-void Cdisplay(int q[m]){
+void Cdisplay(int q[100]){
     printf("[");
     for(int i=cfront+1;i<=crear;i++){
         printf("%d ",q[i]);
@@ -113,21 +115,9 @@ void Cdisplay(int q[m]){
 
 
 int main(){
-    printf("enter the size of the linear queue\n");
-    scanf("%d",&n);
-    int a[n];
-
-    printf("enter the size of the circular queue\n");
-    scanf("%d",&m);
-    int b[m];
-
-    for(int i=0;i<n;i++){
-        a[i]=-1;
-    }
-
-    for(int i=0;i<m;i++){
-        b[i]=-1;
-    }
+    
+    int a[100];
+    int b[100];
 
     int ch=0;
     int chl=0;
@@ -136,6 +126,11 @@ int main(){
     scanf("%d",&chl);
     switch(chl){
         case 1:
+        printf("enter the size of the linear queue\n");
+        scanf("%d",&n);
+        for(int i=0;i<n;i++){
+        a[i]=-1;
+        }
         while(ch!=-1 && chl!=-1){
             printf("\nFollowing are the queue operations that can be performed via this program on Linear Queue\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\nEnter your choice\n");
             scanf("%d",&ch);
@@ -165,6 +160,11 @@ int main(){
         }
         break;
         case 2:
+        printf("enter the size of the circular queue\n");
+        scanf("%d",&m);
+        for(int i=0;i<m;i++){
+        b[i]=-1;
+        }
         while(ch!=-1){
             printf("\nFollowing are the queue operations that can be performed via this program on Circular Queue\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\nEnter your choice\n");
             scanf("%d",&ch);
