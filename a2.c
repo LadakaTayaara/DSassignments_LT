@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int ch=0;
 int accept(int a[4][4], int m, int n) {
     int value = 0;
     printf("Enter matrix elements (%d x %d):\n", m, n);
@@ -19,6 +20,7 @@ int accept(int a[4][4], int m, int n) {
         return 1;
     } else {
         printf("\nMatrix is not sparse(Non-zero elements: %d out of %d).\n", value, m * n);
+        ch=5;
         return 0;
     }
 }
@@ -205,7 +207,6 @@ int main() {
 
     int is_sparse = accept(a, m, n);
 
-    int ch = 0;
     while (ch != 5) {
         printf("\n\nSelect an operation:\n");
         printf("1. Display the entered matrix\n");
