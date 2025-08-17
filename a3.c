@@ -140,7 +140,7 @@ int main(){
                     printf("\nqueue is full \n");
                 }
                 else{
-                    printf("\nenter the element you want to enqueue ");
+                    printf("\nenter the job serial number ");
                     scanf("%d",&elem);
                     enqueue(a,elem);
                 }
@@ -174,7 +174,7 @@ int main(){
                     printf("\nqueue is full \n");
                 }
                 else{
-                    printf("\nenter the element you want to enqueue ");
+                    printf("\nenter the job's serial number ");
                     scanf("%d",&elem);
                     Cenqueue(b,elem);
                 }
