@@ -44,10 +44,8 @@ char pop() {
 }
 
 void display(char stack[100]){
-    printf("\n===STACK DISPLAY===\n");
-    for(int i=0;i<=top;i++){
-        printf("\n%d\n======",stack[i]);
-}}
+    printf("\n%c <------ TOP\n",stack[top]);
+}
 
 int icp(char c) {
     if (c == '(') return 5;
@@ -100,7 +98,7 @@ int main() {
     int ch=0;
     char elem;
      while(ch!=-1){
-        printf("\nFollowing are the stack operations that can be performed via this program on \n1.Display\n2.Push\n3.Pop\n4.Convert to infix to postfix\n5.Exit\nEnter your choice\n");
+        printf("\nFollowing are the stack operations that can be performed via this program on \n1.Display Top\n2.Push\n3.Pop\n4.Convert to infix to postfix\n5.Exit\nEnter your choice\n");
         scanf("%d",&ch);
         switch(ch){
             case 1:
