@@ -43,6 +43,12 @@ char pop() {
     }
 }
 
+void display(char stack[100]){
+    printf("\n===STACK DISPLAY===\n");
+    for(int i=0;i<=top;i++){
+        printf("\n%d\n======",stack[i]);
+}}
+
 int icp(char c) {
     if (c == '(') return 5;
     if (c == '^') return 4;
@@ -91,9 +97,43 @@ void conversion(char input_infix[]) {
 
 int main() {
     char infix[100];
-    printf("Enter an infix expression: ");
-    scanf("%s", infix);
-    conversion(infix);
-    printf("The postfix expression is: %s\n", postfix);
+    int ch=0;
+    char elem;
+     while(ch!=-1){
+        printf("\nFollowing are the stack operations that can be performed via this program on \n1.Display\n2.Push\n3.Pop\n4.Convert to infix to postfix\n5.Exit\nEnter your choice\n");
+        scanf("%d",&ch);
+        switch(ch){
+            case 1:
+                display(stack);
+                break;
+            case 2:
+                if(isFull(stack,top,n)){
+                    printf("Stack is full\n");
+                }
+                else{
+                    printf("\nenter the element to push\n");
+                    scanf(" %c",&elem);
+                    push(elem);
+                }
+                break;
+            case 3:
+                if(isEmpty(stack,top,n)){
+                    printf("Stack is empty\n");
+                }
+                else{
+                    pop(stack,top,n);
+                }
+                break;
+            case 4:printf("Enter an infix expression: ");
+                   scanf("%s", infix);
+                   conversion(infix);
+                   printf("The postfix expression is: %s\n", postfix);
+                   break;
+            case 5:
+                ch=-1;
+                break;
+                default:printf("Invalid choice\n");
+        }
+    }
     return 0;
 }
