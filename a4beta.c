@@ -63,11 +63,41 @@ int isp(char c) {
     return 0;
 }
 
-void conversion(char input_infix[]) {
+void pstfix(char input[]) {
     int i = 0;
     int j = 0;
-    while (input_infix[i] != '\0') {
-        char current_char = input_infix[i];
+    while (input[i] != '\0') {
+        char current_char = input[i];
+        if (isalnum(current_char)) {
+            postfix[j++] = current_char;
+        } else if (current_char == '(') {
+            push(current_char);
+        } else if (current_char == ')') {
+            while (!isEmpty(stack, top, n) && stack[top] != '(') {
+                postfix[j++] = pop();
+            }
+            if (!isEmpty(stack, top, n) && stack[top] == '(') {
+                pop();
+            }
+        } else {
+            while (!isEmpty(stack, top, n) && isp(stack[top]) >= icp(current_char)) {
+                postfix[j++] = pop();
+            }
+            push(current_char);
+        }
+        i++;
+    }
+    while (!isEmpty(stack, top, n)) {
+        postfix[j++] = pop();
+    }
+    postfix[j] = '\0';
+}
+
+void infx(char input[]) {
+    int i = 0;
+    int j = 0;
+    while (input[i] != '\0') {
+        char current_char = input[i];
         if (isalnum(current_char)) {
             postfix[j++] = current_char;
         } else if (current_char == '(') {
@@ -95,10 +125,11 @@ void conversion(char input_infix[]) {
 
 int main() {
     char infix[100];
+    char postfix[100];
     int ch=0;
     char elem;
      while(ch!=-1){
-        printf("\nFollowing are the stack operations that can be performed via this program on \n1.Display Top\n2.Push\n3.Pop\n4.Convert to infix to postfix\n5.Exit\nEnter your choice\n");
+        printf("\nFollowing are the stack operations that can be performed via this program on \n1.Display Top\n2.Push\n3.Pop\n4.Convert to infix to postfix\n5.Postfix to Infix\n6.Exit\nEnter your choice\n");
         scanf("%d",&ch);
         switch(ch){
             case 1:
@@ -124,10 +155,14 @@ int main() {
                 break;
             case 4:printf("Enter an infix expression: ");
                    scanf("%s", infix);
-                   conversion(infix);
+                   pstfix(infix);
                    printf("The postfix expression is: %s\n", postfix);
                    break;
             case 5:
+                printf("Enter an infix expression: ");
+                scanf("%s", infix);
+                break;
+            case 6:
                 ch=-1;
                 break;
                 default:printf("Invalid choice\n");
