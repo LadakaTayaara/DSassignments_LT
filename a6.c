@@ -4,10 +4,10 @@
 
 typedef struct BST
 {
-char word[10];
-char meaning[20];
-struct BST *left;
-struct BST *right;
+    char word[10];
+    char meaning[20];
+    struct BST *left;
+    struct BST *right;
 }BST;
 
 BST* createNode( char word[], char meaning[])
@@ -19,12 +19,15 @@ BST* createNode( char word[], char meaning[])
 }
 
 BST* insert(BST* root, char word[], char meaning[])
-{	if (root==NULL)
-	{	return createNode(word, meaning);}
-	if (strcmp(word, root->word)<0)
-	{root->left = insert(root->left,word,meaning);}
-	else if (strcmp(word, root->word) > 0)
-	{root->right=  insert(root->right, word, meaning);}
+{	if (root==NULL){
+        return createNode(word, meaning);
+    }
+	if (strcmp(word, root->word)<0){
+        root->left = insert(root->left,word,meaning);
+    }
+	else if (strcmp(word, root->word) > 0){
+        root->right=  insert(root->right, word, meaning);
+    }
 	return root;
 }
 
@@ -33,12 +36,15 @@ BST* search_nr(BST* root, char word[])
 	BST* temp = root;
 	while (temp !=NULL)
 	{
-		if (strcmp(word, temp->word)==0)
-		{return temp;}
-		else if (strcmp(word, temp->word) < 0)
-		{temp=temp->left;}
-		else 
-		{temp=temp->right;}
+		if (strcmp(word, temp->word)==0){
+            return temp;
+        }
+		else if (strcmp(word, temp->word) < 0){
+            temp=temp->left;
+        }
+		else {
+            temp=temp->right;
+        }
 	}
 	return NULL;
 }
@@ -54,11 +60,9 @@ BST* minValueNode(BST* node)
 
 BST* deleteNode(BST* root, char word[]) {
     if (root == NULL) return root;
+    if (strcmp(word, root->word) < 0)root->left = deleteNode(root->left, word);
+    else if (strcmp(word, root->word) > 0)root->right = deleteNode(root->right, word);
 
-    if (strcmp(word, root->word) < 0)
-        root->left = deleteNode(root->left, word);
-    else if (strcmp(word, root->word) > 0)
-        root->right = deleteNode(root->right, word);
     else {
         if (root->left == NULL) {
             BST* temp = root->right;
@@ -130,17 +134,7 @@ int main() {
     char word[20], meaning[50];
 
     do {
-        printf("\n--- Dictionary using BST ---\n");
-        printf("1. Insert a word\n");
-        printf("2. Search a word\n");
-        printf("3. Delete a word\n");
-        printf("4. Inorder Traversal\n");
-        printf("5. Preorder Traversal\n");
-        printf("6. Postorder Traversal\n");
-        printf("7. Make a Copy of Tree\n");
-        printf("8. Make Mirror Image of Tree\n");
-        printf("9. Exit\n");
-        printf("Enter choice: ");
+        printf("\n--- Dictionary using BST ---\n1. Insert a word\n2. Search a word\n3. Delete a word\n4. Inorder Traversal\n5. Preorder Traversal\n6. Postorder Traversal\n7. Make a Copy of Tree\n8. Make Mirror Image of Tree\n9. Exit\nEnter choice: ");
         scanf("%d", &choice);
         getchar(); // clear newline left by scanf
 
