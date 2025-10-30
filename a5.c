@@ -10,7 +10,7 @@ struct node{
     struct node *next;
 };
 
-struct node *head=(struct node *)malloc(sizeof(struct node));
+struct node *head = NULL;
 
 int lenl(struct node *head){
     struct node *curr = (struct node *)malloc(sizeof(struct node));
@@ -110,6 +110,7 @@ void insertbypos(struct node *head){
 }
 
 int main(){
+    head = (struct node *)malloc(sizeof(struct node));
     int cch=0;
     while(cch!=-1){
         printf("\nFollowing are the Linked List operations that can be performed via this program on \n1.Create\n2.Display\n3.Length of the entry\n4.Insert at a position\n5.Exit\nEnter your choice\n");

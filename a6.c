@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 typedef struct BST
 {
 char word[10];
@@ -8,6 +9,7 @@ char meaning[20];
 struct BST *left;
 struct BST *right;
 }BST;
+
 BST* createNode( char word[], char meaning[])
 {	BST* newNode=(BST*)malloc(sizeof(BST));
 	strcpy(newNode->word,word);
@@ -15,6 +17,7 @@ BST* createNode( char word[], char meaning[])
 	newNode->left = newNode->right= NULL;
 	return newNode;
 }
+
 BST* insert(BST* root, char word[], char meaning[])
 {	if (root==NULL)
 	{	return createNode(word, meaning);}
@@ -24,6 +27,7 @@ BST* insert(BST* root, char word[], char meaning[])
 	{root->right=  insert(root->right, word, meaning);}
 	return root;
 }
+
 BST* search_nr(BST* root, char word[])
 {
 	BST* temp = root;
@@ -37,7 +41,8 @@ BST* search_nr(BST* root, char word[])
 		{temp=temp->right;}
 	}
 	return NULL;
-}	
+}
+
 BST* minValueNode(BST* node)
 {	BST* curr = node;
 	while (curr!=NULL && curr->left!=NULL)
@@ -45,7 +50,8 @@ BST* minValueNode(BST* node)
 		curr=curr->left;
 	}
 	return curr;
-}	
+}
+
 BST* deleteNode(BST* root, char word[]) {
     if (root == NULL) return root;
 
@@ -71,6 +77,7 @@ BST* deleteNode(BST* root, char word[]) {
     }
     return root;
 }
+
 void inorder(BST* root) {
     if (root != NULL) {
         inorder(root->left);

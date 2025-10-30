@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 struct treenode
 {
 	char data[10];
 	struct treenode *left;
 	struct treenode *right;
 };
+
 struct treenode* createnode(char *data)
 {
 	struct treenode* newnode= (struct treenode*)malloc(sizeof(struct treenode));
@@ -14,6 +16,7 @@ struct treenode* createnode(char *data)
 	newnode->left=newnode->right=NULL;
 	return newnode;
 }
+
 struct treenode* createTree()
 {
 	char data[10];
@@ -33,6 +36,7 @@ struct treenode* createTree()
 	{node->right=createTree();}
 	return node;
 }
+
 void inorder(struct treenode* root)
 {
 	if (root!=NULL)
@@ -42,6 +46,7 @@ void inorder(struct treenode* root)
 		inorder(root->right);
 	}
 }
+
 void preorder(struct treenode* root)
 {
 	if (root!=NULL)
@@ -51,6 +56,7 @@ void preorder(struct treenode* root)
 		preorder(root->right);
 	}
 }
+
 void postorder(struct treenode* root)
 {
 	if (root!=NULL)
@@ -60,18 +66,22 @@ void postorder(struct treenode* root)
 		printf(" %s",root->data);
 	}
 }
+
 struct treenode* queue[100];
 int front=-1,rear=-1;
+
 void enqueue(struct treenode* node)
 {
 	if (node==NULL) return;
 	queue[++rear]=node;
 }
+
 struct treenode* dequeue()
 {
 	if (front==rear) return NULL;
 	return queue[++front];
 }
+
 void levelorder(struct treenode* root)
 {
 	if (root == NULL) return;
@@ -168,20 +178,24 @@ int main()
 	printf("Create the binary tree: \n");
 	root=createTree();
 	printf("\nInorder Traversal: ");
+	
 	inorder(root);
 	printf("\nPreorder Traversal: ");
 	preorder(root);
+
 	printf("\nPostorder Traversal: ");
 	postorder(root);
+
 	printf("\nLevel order Traversal: ");
 	levelorder(root);
+
 	printf("\nNon-Recursive Inorder   : ");
-inorderNonRec(root);
+	inorderNonRec(root);
 
-printf("\nNon-Recursive Preorder  : ");
-preorderNonRec(root);
+	printf("\nNon-Recursive Preorder  : ");
+	preorderNonRec(root);
 
-printf("\nNon-Recursive Postorder : ");
-postorderNonRec(root);
-	return 0;
+	printf("\nNon-Recursive Postorder : ");
+	postorderNonRec(root);
+		return 0;
 }
